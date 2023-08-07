@@ -1,0 +1,122 @@
+Here are the commands for updating the software on an Amazon Linux instance and installing the Apache web server:
+
+# Update the software on the instance
+sudo yum update -y
+
+# Install the Apache web server
+sudo yum install -y httpd
+
+# Start the Apache web server
+sudo systemctl start httpd
+
+# Enable the Apache web server to start on boot
+sudo systemctl enable httpd
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Here are some additional commands that you may find helpful:
+
+To check the status of the Apache web server, you can use the following command:
+sudo systemctl status httpd
+
+To stop the Apache web server, you can use the following command:
+sudo systemctl stop httpd
+
+To disable the Apache web server, you can use the following command:
+sudo systemctl disable httpd
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Remote to PublicInstance(webserver) to PrivateInstance(appserver)
+
+Open the file nano appkey
+Write some text in the file.  (Paste filename.pem Content)
+Press Ctrl+O to save the file.
+Type the name of the file, and then press Enter.
+Press Ctrl+X to exit nano.
+
+chmod 400 appkey
+
+ssh -i appkey ec2-user@10.0.2.191
+
+ping 8.8.8.8
+
+We have Internet through NAT Gateway
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Install MySQL
+
+
+sudo wget http://dev.mysql.com/get/mysql57-community-release-el7-8.noarch.rpm
+sudo yum localinstall mysql57-community-release-el7-8.noarch.rpm
+sudo yum install mysql-community-server
+
+
+
+Connect to Database(mysql):
+
+mysql -h DATABASE_ENDPOINT -u USERNAME -p
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+MySQL commands:
+
+CREATE DATABASE
+CREATE DATABASE mydb;
+This command will create a new database called mydb.
+
+CREATE TABLE
+
+CREATE TABLE users (
+  id INT NOT NULL AUTO_INCREMENT,
+  name VARCHAR(255) NOT NULL,
+  email VARCHAR(255) NOT NULL,
+  PRIMARY KEY (id)
+);
+
+This command will create a new table called users with the following columns:
+
+* id: An integer that is the primary key of the table.
+* name: A string that stores the user's name.
+* email: A string that stores the user's email address.
+
+CREATE USER
+CREATE USER user_name IDENTIFIED BY password;
+
+This command will create a new user account called user_name with the password password.
+
+CREATE VIEW
+
+CREATE VIEW view_name AS
+SELECT column_name1, column_name2, ...
+FROM table_name;
+
+This command will create a new view called view_name that is based on the data in the table_name table.
+
+For more information on MySQL commands, you can refer to the MySQL documentation.
+
+Here are some additional examples of MySQL commands that you might find useful:
+
+INSERT INTO
+INSERT INTO table_name (column_name1, column_name2, ...)
+VALUES (value1, value2, ...);
+
+This command is used to insert data into a table.
+
+SELECT
+SELECT column_name1, column_name2, ...
+FROM table_name;
+
+This command is used to select data from a table.
+
+UPDATE
+UPDATE table_name
+SET column_name1 = value1, column_name2 = value2, ...
+WHERE condition;
+
+This command is used to update data in a table.
+
+DELETE
+DELETE FROM table_name
+WHERE condition;
+
+This command is used to delete data from a table.
